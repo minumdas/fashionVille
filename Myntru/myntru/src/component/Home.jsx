@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Caroussel from './Caroussel';
-import Homecard from './Homecard';
 
 
 const Home = () => {
@@ -26,7 +25,7 @@ const Home = () => {
       </div> 
     <div  className="my-4">
       <Caroussel/>
-      <Homecard/>
+     
      </div>
      </div>
     </div>
