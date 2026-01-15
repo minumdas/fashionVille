@@ -1,5 +1,6 @@
 import couponImg from '../coupon.png';
 
+
 const ExampleCarouselImage = ({ text }) => {
   return (
     <img

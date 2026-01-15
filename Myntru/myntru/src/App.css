@@ -1,0 +1,4 @@
+.btn-coupon:hover {
+  background-color: #990000; /* darker red on hover */
+  color: #fff;
+}
