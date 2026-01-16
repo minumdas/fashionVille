@@ -1,0 +1,227 @@
+/* Global */
+.register-page {
+  display: flex;
+  min-height: 100vh;
+  /* FIX */
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden;
+  /* PREVENT PAGE SCROLL */
+}
+
+/* LEFT SIDE */
+.register-left {
+  flex: 1;
+  height: 100vh;
+  /* FIX */
+  background: linear-gradient(135deg, var(--bg-dark), #4a0410);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.brand-content h1 {
+  font-size: 48px;
+  color: var(--primary);
+}
+
+.brand-content p {
+  margin: 10px 0 30px;
+  font-size: 18px;
+  color: #ddd;
+}
+
+.features {
+  margin-top: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.feature-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+/* RIGHT SIDE */
+.register-right {
+  flex: 1;
+  height: 100vh;
+  /* FIX */
+  background-color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  /* SCROLL HERE */
+}
+
+/* FORM */
+.register-form-container {
+  width: 420px;
+  background: var(--bg-dark);
+  padding: 35px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 63, 108, 0.15);
+}
+
+/* HEADER (FIXED & ENHANCED) */
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* LEFT ICON BADGE */
+.header-left {
+  flex-shrink: 0;
+}
+
+.icon-circle {
+  width: 55px;
+  height: 55px;
+  background: var(--primary-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 63, 108, 0.6);
+}
+
+/* RIGHT TEXT */
+.header-right h2 {
+  margin: 0;
+  color: var(--primary);
+}
+
+.header-right p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #bbb;
+}
+
+
+/* INPUTS */
+.input-group {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--primary);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 45px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* PASSWORD TOGGLE */
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/* TERMS */
+.terms {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.terms a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* BUTTON */
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* DIVIDER */
+.divider {
+  text-align: center;
+  margin: 25px 0;
+  color: #777;
+}
+
+/* SOCIAL ICON ONLY */
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #111;
+  border: 1px solid #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.social-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.social-btn:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(255, 63, 108, 0.4);
+}
+
+/* LOGIN LINK */
+.login-link {
+  margin-top: 20px;
+  text-align: center;
+  color: #bbb;
+}
+
+.login-link a {
+  color: var(--primary);
+  text-decoration: none;
+}

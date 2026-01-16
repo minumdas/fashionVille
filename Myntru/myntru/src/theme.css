@@ -1,0 +1,46 @@
+/* Global Theme Variables */
+:root {
+    /* Brand Colors - Deep Coral/Red Theme */
+    --primary: #ff3f6c;
+    /* Main Action Color (Coral Pink) */
+    --primary-dark: #d63656;
+    /* Hover State */
+    --primary-light: #ffe6eb;
+    /* Light Backgrounds */
+    --primary-gradient: linear-gradient(135deg, #ff3f6c, #ff6b8a);
+
+    /* Dark Mode Backgrounds */
+    --bg-dark: #000000;
+    /* Main Page Background */
+    --bg-card: #121212;
+    /* Card Background */
+    --bg-input: #1a1a1a;
+    /* Input Fields */
+
+    /* Text Colors */
+    --text-light: #ffffff;
+    /* Primary Text */
+    --text-muted: #b3b3b3;
+    /* Secondary Text */
+    --text-dark: #282c3f;
+    /* Text on light backgrounds */
+
+    /* Status Colors */
+    --error: #ff1a1a;
+    --success: #03a685;
+
+    /* Borders & Shadows */
+    --border-color: #333333;
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 30px rgba(255, 63, 108, 0.2);
+
+    /* Transitions */
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

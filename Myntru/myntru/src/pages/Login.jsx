@@ -1,17 +1,24 @@
 import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import couponImg from "../coupon.png";
+import { useNavigate, Link } from 'react-router-dom';
+import couponImg from "../coupon.png"; // Using this as brand logo for now if no other available
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import './Login.css';
 
 const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const abortRef = useRef(null);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     if (loading) return;
 
     setLoading(true);
@@ -50,7 +57,9 @@ const Login = () => {
       setError('Login failed. Please try again.');
 
     } catch (err) {
-      // backend unreachable → fallback
+      if (err.name === 'AbortError') return;
+
+      // backend unreachable → fallback (kept for demo)
       const validName = 'admin';
       const validPassword = '12345';
 
@@ -60,81 +69,88 @@ const Login = () => {
         setError('Invalid username or password');
       }
     } finally {
-      setLoading(false);
+      if (abortRef.current === controller) {
+        setLoading(false);
+      }
     }
   };
 
   return (
-    <div className="backgrd">
-      <div className="card mx-auto col-11 col-sm-8 col-md-6 col-lg-4">
-        <div className="card-body">
+    <div className="login-page">
+      {/* Branding Side */}
+      <div className="login-branding">
+        <div className="brand-wrapper">
+          <img src={couponImg} alt="WearVille Logo" className="brand-logo-img" />
+          <h1 className="brand-title">WearVille</h1>
+          <p className="brand-subtitle">
+            Discover the latest fashion trends and elevate your style with our exclusive collection.
+          </p>
+        </div>
+      </div>
 
-          <div className="row mt-4 text-center">
-            <img
-              src={couponImg}
-              alt="coupon"
-              className="coupon-img"
-              style={{ maxHeight: '150px', objectFit: 'contain' }}
-            />
+      {/* Form Side */}
+      <div className="login-form-container">
+        <div className="login-card">
+          <div className="form-header">
+            <h2>Welcome Back</h2>
+            <p>Please login to your account</p>
           </div>
 
-          <div className="row mt-4">
-            <div className="col-lg-3">
-              <label>Name</label>
-            </div>
-            <div className="col-lg-6">
+          <form onSubmit={handleLogin}>
+            <div className="input-group">
+              <span className="input-icon">
+                <PersonOutlineIcon />
+              </span>
               <input
-                className="form-control"
+                className="custom-input"
                 type="text"
+                placeholder="Username"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
             </div>
-          </div>
 
-          <div className="row mt-2">
-            <div className="col-lg-3">
-              <label>Password</label>
-            </div>
-            <div className="col-lg-6">
+            <div className="input-group">
+              <span className="input-icon">
+                <LockOutlinedIcon />
+              </span>
               <input
-                type="password"
-                className="form-control"
+                type={showPassword ? "text" : "password"}
+                className="custom-input"
+                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
-            </div>
-          </div>
-
-          {error && (
-            <div className="row mt-2">
-              <div className="col text-danger text-center">
-                {error}
-              </div>
-            </div>
-          )}
-
-          <div className="row mt-3">
-            <div className="col-lg-6 mx-auto text-center">
               <button
-                className="btn btn-primary w-100"
-                onClick={handleLogin}
-                disabled={loading}
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
               >
-                {loading ? "Logging in..." : "Login"}
+                {showPassword ? <Visibility /> : <VisibilityOff />}
               </button>
             </div>
-          </div>
 
-          <div className="row mt-2 text-center">
+            {error && (
+              <div className="error-msg">
+                {error}
+              </div>
+            )}
+
             <button
-              className="btn btn-link"
-              onClick={() => navigate('/register')}
+              type="submit"
+              className="btn-login"
+              disabled={loading}
             >
-              New Registration
+              {loading ? "Signing in..." : "Login"}
             </button>
-          </div>
 
+            <div className="register-link">
+              New here?
+              <Link to="/register">Create an Account</Link>
+            </div>
+          </form>
         </div>
       </div>
     </div>

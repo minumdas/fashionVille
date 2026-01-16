@@ -1,20 +1,24 @@
-import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import kidsfashion from '../images/Kidsfashion.jpg';
-import coordset from '../images/coordset.jpg';
+import lady_sunglass from '../images/lady_sunglass.webp';
+import lady_wallet from '../images/lady_wallet.jpg';
+import lady_shoe from '../images/lady_shoe.jpg';
+import lady_leatherbelt from '../images/lady_leatherbelt.jpg';
+import women_watch from '../images/women_watch.jpg';
 import dresses from '../images/dresses.jpg';
+import coordset from '../images/coordset.jpg';
 import Western from '../images/Western.jpg';
-import Pairs from '../images/Pairs.jpg';
-import Kurtiset from '../images/Kurtiset.jpg';
-import './Shopbycategory.css';
+import kurtiset from '../images/Kurtiset.jpg';
 
 const categories = [
-  { title: 'Kids Fashion', img: kidsfashion, desc: 'Trendy kids wear' },
-  { title: 'Western', img: Western, desc: 'Modern western styles' },
-  { title: 'Kurtis', img: Kurtiset, desc: 'Ethnic kurtis' },
-  { title: 'Pairs', img: Pairs, desc: 'Perfect combos' },
-  { title: 'Coord Sets', img: coordset, desc: 'Stylish coord sets' },
-  { title: 'Dresses', img: dresses, desc: 'Elegant dresses' }
+   { title: 'Sunglass', img: lady_sunglass, desc: 'Stylish coord sets' },  
+   { title: 'Dress', img: dresses, desc: 'Stylish coord sets' },  
+   { title: 'Coordset', img: coordset, desc: 'Stylish coord sets' },  
+  { title: 'Western', img: Western, desc: 'Stylish coord sets' },  
+  { title: 'Wallet', img: lady_wallet, desc: 'Trendy kids wear' },
+  { title: 'Kurti Set', img: kurtiset, desc: 'Modern western styles' },
+  { title: 'Belt', img: lady_leatherbelt, desc: 'Ethnic kurtis' },
+  { title: 'Shoe', img: lady_shoe, desc: 'Perfect combos' },
+  { title: 'Watch', img: women_watch, desc: 'Stylish coord sets' },
 ];
 
 // chunk cards per slide
@@ -23,10 +27,9 @@ const slides = [];
 for (let i = 0; i < categories.length; i += chunkSize) {
   slides.push(categories.slice(i, i + chunkSize));
 }
-
-const Shopbycategory = () => {
+const ShopForWomen = () => {
   return (
-    <div className="container my-4">
+     <div className="container my-4">
      
       <Carousel
         indicators={false}
@@ -57,7 +60,7 @@ const Shopbycategory = () => {
         ))}
       </Carousel>
     </div>
-  );
-};
+  )
+}
 
-export default Shopbycategory;
+export default ShopForWomen

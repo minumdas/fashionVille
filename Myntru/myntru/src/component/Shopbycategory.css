@@ -1,22 +1,66 @@
+/* Grid inside each carousel slide */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+/* Yellow separator */
+.category-cell {
+  position: relative;
+  padding: 8px;
+  background: #ffd400;
+}
+
+/* Black diagonal lines */
+.category-cell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    black 0px,
+    black 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  opacity: 0.35;
+  z-index: 1;
+}
+
+/* Card */
 .category-card {
-  border: 2px solid #e0e0e0;
-  border-radius: 16px;
+  position: relative;
+  z-index: 2;
+  border: none;
+  border-radius: 0;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-/* Hover effect */
 .category-card:hover {
-  border-color: #ff3f6c;          /* Myntra-style pink */
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Image smooth zoom on hover */
 .category-card img {
+  height: 230px;
+  object-fit: cover;
   transition: transform 0.4s ease;
 }
 
 .category-card:hover img {
   transform: scale(1.05);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .category-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

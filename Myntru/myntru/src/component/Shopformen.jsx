@@ -1,20 +1,25 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import kidsfashion from '../images/Kidsfashion.jpg';
-import coordset from '../images/coordset.jpg';
-import dresses from '../images/dresses.jpg';
-import Western from '../images/Western.jpg';
-import Pairs from '../images/Pairs.jpg';
-import Kurtiset from '../images/Kurtiset.jpg';
-import './Shopbycategory.css';
+import men_sunglass from '../images/men_sunglass.webp';
+import men_wallet from '../images/men_wallet.jpg';
+import men_shoe from '../images/men_shoe.jpg';
+import men_leatherbelt from '../images/men_leatherbelt.jpg';
+import men_watch from '../images/men_watch.jpg';
+import shirt from '../images/shirt1.jpg';
+import tshirt from '../images/tshirt.jpg';
+import kurta from '../images/kurta.jpg';
+import printedshirt from '../images/printed_shirt.jpg';
 
 const categories = [
-  { title: 'Kids Fashion', img: kidsfashion, desc: 'Trendy kids wear' },
-  { title: 'Western', img: Western, desc: 'Modern western styles' },
-  { title: 'Kurtis', img: Kurtiset, desc: 'Ethnic kurtis' },
-  { title: 'Pairs', img: Pairs, desc: 'Perfect combos' },
-  { title: 'Coord Sets', img: coordset, desc: 'Stylish coord sets' },
-  { title: 'Dresses', img: dresses, desc: 'Elegant dresses' }
+   { title: 'Shirt', img: shirt, desc: 'Stylish coord sets' },  
+   { title: 'T-shirt', img: tshirt, desc: 'Stylish coord sets' },  
+   { title: 'Kurta', img: kurta, desc: 'Stylish coord sets' },  
+  { title: 'Printed Shirt', img: printedshirt, desc: 'Stylish coord sets' },  
+  { title: 'Sunglasses', img: men_sunglass, desc: 'Trendy kids wear' },
+  { title: 'Wallet', img: men_wallet, desc: 'Modern western styles' },
+  { title: 'Shoe', img: men_shoe, desc: 'Ethnic kurtis' },
+  { title: 'Leather belt', img: men_leatherbelt, desc: 'Perfect combos' },
+  { title: 'Watch', img: men_watch, desc: 'Stylish coord sets' },
 ];
 
 // chunk cards per slide
@@ -23,10 +28,9 @@ const slides = [];
 for (let i = 0; i < categories.length; i += chunkSize) {
   slides.push(categories.slice(i, i + chunkSize));
 }
-
-const Shopbycategory = () => {
+const Shopformen = () => {
   return (
-    <div className="container my-4">
+     <div className="container my-4">
      
       <Carousel
         indicators={false}
@@ -57,7 +61,7 @@ const Shopbycategory = () => {
         ))}
       </Carousel>
     </div>
-  );
-};
+  )
+}
 
-export default Shopbycategory;
+export default Shopformen

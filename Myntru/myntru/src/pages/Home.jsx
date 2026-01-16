@@ -9,27 +9,13 @@ import logoVille from '../WearVille.jpg';
 import Button from 'react-bootstrap/Button';
 import Footer from './Footer';
 import Shopbycategory from '../component/Shopbycategory';
+import AppNavbar from './Navbar';
 
 const Home = () => {
   return (
     <>
       {/* NAVBAR */}
-      <Navbar bg="light" expand="lg" sticky="top" className="shadow-sm border-bottom">
-        <Container>
-          <Navbar.Brand href="#home" className="d-flex align-items-center">
-            <img src={logoVille} style={{ height: '60px', marginRight: '10px' }} alt="Logo" />
-            <span className="fw-bold h5 mb-0">WearVille</span>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="#men" className="mx-2 fw-semibold">Men</Nav.Link>
-              <Nav.Link href="#women" className="mx-2 fw-semibold">Women</Nav.Link>
-              <Nav.Link href="#kids" className="mx-2 fw-semibold">Kids</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <AppNavbar/>
 
       {/* MAIN CONTENT */}
       <Container className="my-5">

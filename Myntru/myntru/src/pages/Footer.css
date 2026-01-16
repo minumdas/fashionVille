@@ -1,0 +1,10 @@
+.footer-links li {
+  cursor: pointer;
+  margin-bottom: 6px;
+  transition: color 0.2s ease;
+}
+
+.footer-links li:hover {
+  text-decoration: underline;
+  color: var(--primary);
+}
