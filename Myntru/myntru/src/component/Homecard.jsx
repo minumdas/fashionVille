@@ -30,32 +30,31 @@ const Homecard = () => {
     <div className="row g-4">
       {products.map((product) => (
         <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={product.id}>
-          <div className="card h-100 shadow-sm border-0 rounded-4">
-            <img
-              src={product.imageUrl || "https://via.placeholder.com/300x200?text=Product"}
-              className="card-img-top rounded-top-4"
-              alt={product.name}
-              style={{ height: '250px', objectFit: 'cover' }}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = "https://via.placeholder.com/300x200?text=Product";
-              }}
-            />
+          <div className="card h-100 border-0 shadow-soft">
+            <div className="position-relative overflow-hidden">
+              <img
+                src={product.imageUrl || "https://via.placeholder.com/300x200?text=Product"}
+                className="card-img-top"
+                alt={product.name}
+                style={{ height: '320px', objectFit: 'cover', transition: 'var(--transition-base)' }}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "https://via.placeholder.com/300x200?text=Product";
+                }}
+              />
+            </div>
 
-            <div className="card-body text-center">
-              <h5 className="card-title fw-bold">
-                {product.name}
-              </h5>
-
-              <p className="card-text text-muted">
+            <div className="card-body">
+              <h6 className="mb-1 fw-bold text-truncate">{product.name}</h6>
+              <p className="small text-muted mb-2 text-truncate">
                 {product.description || 'Trendy & comfortable styles'}
               </p>
-
-              <p className="fw-bold text-danger">₹{product.price}</p>
-
-              <button className="btn btn-danger fw-bold">
-                Shop Now
-              </button>
+              <div className="d-flex justify-content-between align-items-center">
+                <span className="fw-bold" style={{ color: 'var(--text-main)' }}>₹{product.price}</span>
+                <button className="btn btn-sm btn-outline-primary px-3">
+                  Shop Now
+                </button>
+              </div>
             </div>
           </div>
         </div>

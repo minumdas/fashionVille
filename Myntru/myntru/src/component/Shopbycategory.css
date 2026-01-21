@@ -1,66 +1,47 @@
-/* Grid inside each carousel slide */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  gap: 24px;
+  padding: 20px 0;
 }
 
-/* Yellow separator */
-.category-cell {
-  position: relative;
-  padding: 8px;
-  background: #ffd400;
-}
-
-/* Black diagonal lines */
-.category-cell::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    black 0px,
-    black 2px,
-    transparent 2px,
-    transparent 8px
-  );
-  opacity: 0.35;
-  z-index: 1;
-}
-
-/* Card */
 .category-card {
-  position: relative;
-  z-index: 2;
-  border: none;
-  border-radius: 0;
-  overflow: hidden;
-  transition: transform 0.3s ease;
+  border: none !important;
+  background: transparent !important;
+  cursor: pointer;
+  transition: var(--transition-base);
 }
 
 .category-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  box-shadow: none !important;
 }
 
 .category-card img {
-  height: 230px;
+  border-radius: var(--border-radius-md);
+  height: 380px;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  box-shadow: var(--shadow-soft);
 }
 
-.category-card:hover img {
-  transform: scale(1.05);
+.category-card .card-body {
+  padding: 15px 0;
+  background: transparent !important;
 }
 
-/* RESPONSIVE */
-@media (max-width: 992px) {
+.category-card .card-title {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 5px;
+}
+
+.category-card .card-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 991px) {
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 576px) {
-  .category-grid {
-    grid-template-columns: repeat(1, 1fr);
   }
 }

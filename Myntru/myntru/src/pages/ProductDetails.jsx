@@ -79,19 +79,20 @@ const ProductDetails = () => {
                 </Button>
                 <Row>
                     <Col md={6}>
-                        <Card className="shadow-sm border-0">
+                        <div className="product-image-container shadow-soft bg-white p-3 rounded-3">
                             <Card.Img
                                 src={product.imageUrl || 'https://placehold.co/600x800?text=No+Image'}
                                 alt={product.name}
                                 className="img-fluid rounded"
+                                style={{ maxHeight: '600px', objectFit: 'contain' }}
                             />
-                        </Card>
+                        </div>
                     </Col>
                     <Col md={6}>
                         <div className="ps-md-4">
-                            <Badge bg="secondary" className="mb-2">{product.category}</Badge>
-                            <h1 className="fw-bold mb-3">{product.name}</h1>
-                            <h2 className="text-primary fw-bold mb-4">₹{product.price}</h2>
+                            <Badge bg="light" className="mb-2 text-muted border">{product.category}</Badge>
+                            <h1 className="fw-bold mb-3" style={{ color: 'var(--text-main)' }}>{product.name}</h1>
+                            <h2 className="fw-bold mb-4" style={{ color: 'var(--primary)' }}>₹{product.price}</h2>
 
                             <hr />
 
@@ -104,23 +105,42 @@ const ProductDetails = () => {
 
                             <div className="d-flex align-items-center mb-4">
                                 <label className="me-3 fw-bold">Quantity:</label>
-                                <div className="input-group" style={{ width: '130px' }}>
-                                    <Button variant="outline-secondary" onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</Button>
-                                    <input type="text" className="form-control text-center" value={quantity} readOnly />
-                                    <Button variant="outline-secondary" onClick={() => setQuantity(quantity + 1)}>+</Button>
+                                <div className="d-flex align-items-center border border-secondary-subtle rounded" style={{ height: '40px' }}>
+                                    <Button
+                                        variant="link"
+                                        className="text-decoration-none px-3 text-secondary fw-bold"
+                                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                                        style={{ borderRight: '1px solid var(--border-color)', height: '100%', borderRadius: '0' }}
+                                    >
+                                        -
+                                    </Button>
+                                    <div className="px-3 fw-bold text-center" style={{ minWidth: '40px' }}>
+                                        {quantity}
+                                    </div>
+                                    <Button
+                                        variant="link"
+                                        className="text-decoration-none px-3 text-secondary fw-bold"
+                                        onClick={() => setQuantity(quantity + 1)}
+                                        style={{ borderLeft: '1px solid var(--border-color)', height: '100%', borderRadius: '0' }}
+                                    >
+                                        +
+                                    </Button>
                                 </div>
                             </div>
 
-                            <div className="d-grid gap-2">
+                            <div className="d-grid gap-3">
                                 <Button
-                                    variant={added ? "success" : "primary"}
+                                    className={added ? "btn-success" : "btn-primary"}
                                     size="lg"
                                     onClick={handleAddToCart}
                                     disabled={added}
+                                    style={added ? { background: 'var(--success)', border: 'none' } : {}}
                                 >
                                     {added ? "Added to Cart!" : "Add to Cart"}
                                 </Button>
-                                <Button variant="outline-dark" size="lg">Buy Now</Button>
+                                <Button variant="outline-primary" size="lg" className="fw-bold">
+                                    Wishlist
+                                </Button>
                             </div>
                         </div>
                     </Col>

@@ -155,6 +155,24 @@ public class FashionBackendApplication {
 								"KIDS"));
 				categoryRepository.saveAll(kidsCategories);
 			}
+
+			// Seed KIDS_BANNER categories for the carousel
+			long bannerCount = categoryRepository.findAll().stream().filter(c -> "KIDS_BANNER".equals(c.getType()))
+					.count();
+			if (bannerCount == 0) {
+				System.out.println("KIDS_BANNER categories missing. Seeding KIDS_BANNER...");
+				List<Category> bannerCategories = Arrays.asList(
+						new Category(null, "New Arrivals",
+								"https://img.freepik.com/free-photo/kids-fashion-concept-with-boy-girl_23-2148443505.jpg",
+								"Discover the latest trends for boys and girls.", "KIDS_BANNER"),
+						new Category(null, "Playful Styles",
+								"https://img.freepik.com/free-photo/group-happy-kids-standing-together_23-2148473268.jpg",
+								"Comfortable wear for every adventure.", "KIDS_BANNER"),
+						new Category(null, "Summer Vibes",
+								"https://img.freepik.com/free-photo/little-girl-pointing-away_23-2148443510.jpg",
+								"Bright and cheery outfits for sunny days.", "KIDS_BANNER"));
+				categoryRepository.saveAll(bannerCategories);
+			}
 		};
 	}
 

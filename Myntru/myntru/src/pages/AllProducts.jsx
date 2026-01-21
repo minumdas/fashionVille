@@ -45,7 +45,7 @@ const AllProducts = () => {
         <>
             <AppNavbar />
             <Container className="my-5">
-                <h2 className="mb-4 text-center fw-bold">All Products</h2>
+                <h2 className="section-title">All Products</h2>
 
                 {loading && (
                     <div className="text-center py-5">
@@ -67,39 +67,32 @@ const AllProducts = () => {
                         {products.map((product) => (
                             <Col key={product.id} md={3} className="mb-4">
                                 <Card
-                                    className="h-100 shadow-sm border-0 product-card"
-                                    style={{ cursor: 'pointer', transition: 'transform 0.2s' }}
+                                    className="h-100 border-0 shadow-soft"
+                                    style={{ cursor: 'pointer' }}
                                     onClick={() => navigate(`/product/${product.id}`)}
-                                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                                 >
-                                    <Card.Img
-                                        variant="top"
-                                        src={product.imageUrl || 'https://placehold.co/300x400?text=No+Image'}
-                                        alt={product.name}
-                                        style={{ height: '300px', objectFit: 'cover' }}
-                                    />
-                                    <Card.Body className="text-center d-flex flex-column">
-                                        <Card.Title className="fs-6 fw-bold">{product.name}</Card.Title>
-                                        <Card.Text className="text-muted small mb-1">{product.category}</Card.Text>
-                                        <Card.Text className="fw-bold text-primary mb-3">₹{product.price}</Card.Text>
-                                        <div className="mt-auto d-grid gap-2">
+                                    <div className="position-relative overflow-hidden">
+                                        <Card.Img
+                                            variant="top"
+                                            src={product.imageUrl || 'https://placehold.co/300x400?text=No+Image'}
+                                            alt={product.name}
+                                            style={{ height: '320px', objectFit: 'cover', transition: 'var(--transition-base)' }}
+                                            onError={(e) => {
+                                                e.target.onerror = null;
+                                                e.target.src = "https://placehold.co/300x400?text=No+Image";
+                                            }}
+                                        />
+                                    </div>
+                                    <Card.Body className="d-flex flex-column">
+                                        <h6 className="mb-1 fw-bold text-truncate">{product.name}</h6>
+                                        <p className="small text-muted mb-3 text-truncate">{product.category}</p>
+                                        <div className="d-flex justify-content-between align-items-center mt-auto">
+                                            <span className="fw-bold" style={{ color: 'var(--text-main)' }}>₹{product.price}</span>
                                             <Button
-                                                variant="primary"
-                                                size="sm"
+                                                className="btn-primary btn-sm rounded-pill px-3"
                                                 onClick={(e) => handleAddToCart(e, product.id)}
                                             >
-                                                Add to Cart
-                                            </Button>
-                                            <Button
-                                                variant="outline-secondary"
-                                                size="sm"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    navigate(`/product/${product.id}`);
-                                                }}
-                                            >
-                                                View Details
+                                                Add
                                             </Button>
                                         </div>
                                     </Card.Body>

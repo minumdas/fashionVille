@@ -1,5 +1,78 @@
-.btn-coupon:hover {
-  background-color: var(--primary-dark);
-  /* darker red on hover */
-  color: #fff;
+@import './theme.css';
+
+/* Global Button Styles */
+.btn-primary {
+  background: var(--primary-gradient) !important;
+  border: none !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: var(--shadow-accent) !important;
+  transition: var(--transition-base) !important;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 63, 108, 0.3) !important;
+  filter: brightness(1.1);
+}
+
+.btn-outline-primary {
+  border: 1px solid var(--primary) !important;
+  color: var(--primary) !important;
+  background: transparent !important;
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-light) !important;
+  color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+}
+
+/* Card Standardization */
+.card {
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--border-radius-md) !important;
+  overflow: hidden;
+  transition: var(--transition-base) !important;
+  background-color: var(--bg-card) !important;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md) !important;
+  transform: translateY(-5px);
+}
+
+/* Page Header / Hero Styles */
+.page-header {
+  background: var(--bg-light);
+  border-bottom: 1px solid var(--border-color);
+  padding: 40px 0;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+/* Section Dividers */
+.section-title {
+  position: relative;
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 2px;
 }

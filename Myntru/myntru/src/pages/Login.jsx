@@ -81,10 +81,13 @@ const Login = () => {
       {/* Branding Side */}
       <div className="login-branding">
         <div className="brand-wrapper">
-          <img src={couponImg} alt="WearVille Logo" className="brand-logo-img" />
+          <div className="logo-container">
+            <img src={couponImg} alt="WearVille Logo" className="brand-logo-img" />
+          </div>
           <h1 className="brand-title">WearVille</h1>
           <p className="brand-subtitle">
-            Discover the latest fashion trends and elevate your style with our exclusive collection.
+            Experience the pinnacle of fashion. <br />
+            Join our exclusive community of trendsetters today.
           </p>
         </div>
       </div>

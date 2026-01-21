@@ -1,46 +1,62 @@
 /* Global Theme Variables */
 :root {
-    /* Brand Colors - Deep Coral/Red Theme */
+    /* Brand Colors - Myntra Inspired Premium Palette */
     --primary: #ff3f6c;
-    /* Main Action Color (Coral Pink) */
+    /* Main Action Color */
     --primary-dark: #d63656;
     /* Hover State */
     --primary-light: #ffe6eb;
-    /* Light Backgrounds */
+    /* Light Backgrounds / Selected State */
     --primary-gradient: linear-gradient(135deg, #ff3f6c, #ff6b8a);
 
-    /* Dark Mode Backgrounds */
-    --bg-dark: #000000;
-    /* Main Page Background */
-    --bg-card: #121212;
-    /* Card Background */
-    --bg-input: #1a1a1a;
-    /* Input Fields */
+    /* Neutral Palette */
+    --bg-light: #ffffff;
+    --bg-page: #f5f7fa;
+    --bg-card: #ffffff;
+    --bg-input: #f9f9f9;
 
     /* Text Colors */
+    --text-main: #282c3f;
+    /* Primary Body/Header Text */
+    --text-muted: #7e818c;
+    /* Secondary/Description Text */
     --text-light: #ffffff;
-    /* Primary Text */
-    --text-muted: #b3b3b3;
-    /* Secondary Text */
-    --text-dark: #282c3f;
-    /* Text on light backgrounds */
+    /* Text on dark backgrounds */
 
     /* Status Colors */
-    --error: #ff1a1a;
+    --error: #d32f2f;
     --success: #03a685;
+    --warning: #ffa000;
 
     /* Borders & Shadows */
-    --border-color: #333333;
-    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 10px 30px rgba(255, 63, 108, 0.2);
+    --border-color: #eaeaec;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+
+    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-accent: 0 4px 12px rgba(255, 63, 108, 0.2);
 
     /* Transitions */
-    --transition: all 0.3s ease;
+    --transition-fast: all 0.2s ease;
+    --transition-base: all 0.3s ease;
 }
 
 body {
-    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    font-family: 'Inter', 'Assistant', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-page);
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-main);
+    font-weight: 700;
 }

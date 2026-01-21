@@ -15,48 +15,48 @@ const Home = () => {
   return (
     <>
       {/* NAVBAR */}
-      <AppNavbar/>
+      <AppNavbar />
 
       {/* MAIN CONTENT */}
       <Container className="my-5">
 
         {/* COUPON CARD */}
-        <div className="card shadow-sm border-0 rounded-4 p-4 mb-5" style={{ backgroundColor: '#f8f9fa' }}>
-          <div className="text-center">
-            <h2 className="fw-bold mb-3">Exclusive Offer!</h2>
-            <p className="text-muted mb-4">Use the coupon below and get amazing discounts</p>
+        <div className="card shadow-soft border-0 p-5 mb-5 text-center" style={{ background: 'var(--primary-light)' }}>
+          <div className="mx-auto" style={{ maxWidth: '600px' }}>
+            <h2 className="fw-bold mb-3" style={{ color: 'var(--primary)' }}>Exclusive Offer!</h2>
+            <p className="text-muted mb-4">Elevate your style with our latest collection and enjoy special savings.</p>
             <img
               src={couponImg}
               alt="Coupon"
-              className="img-fluid mb-3 rounded-3 shadow-sm"
+              className="img-fluid mb-4 rounded-3 shadow-sm"
               style={{ maxHeight: '200px' }}
             />
             <div>
-              <Button variant="danger" size="lg" className="fw-bold px-4 btn-coupon">Copy Code: SAVE20</Button>
+              <Button className="btn-primary">Copy Code: SAVE20</Button>
             </div>
           </div>
         </div>
 
         {/* CAROUSEL SECTION */}
-        <div className="card shadow-sm border-0 rounded-4 p-3">
-          <h3 className="fw-bold mb-4 text-center">Featured Products</h3>
+        <div className="mb-5">
+          <h3 className="section-title">Featured Products</h3>
           <Caroussel />
         </div>
-       <div className="card shadow-sm border-0 rounded-4 p-3">
-          <h3 className="fw-bold mb-4 text-center">New Arrivals</h3>
-          <HomeCard/>
-       </div>
 
-       {/* Card Group */}
-       <div className="card shadow-sm border-0 rounded-4 p-3">
-          <h3 className="fw-bold mb-4 text-center">Shop by Category</h3>
-          <Shopbycategory  />
+        <div className="mb-5">
+          <h3 className="section-title">New Arrivals</h3>
+          <HomeCard />
+        </div>
 
-       </div>
+        {/* Categories section */}
+        <div className="mb-5">
+          <h3 className="section-title">Shop by Category</h3>
+          <Shopbycategory />
+        </div>
 
       </Container>
 
-     <Footer/>
+      <Footer />
     </>
   );
 }

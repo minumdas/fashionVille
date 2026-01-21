@@ -30,19 +30,19 @@ const Cart = () => {
         <>
             <AppNavbar />
             <Container className="py-5" style={{ minHeight: '70vh' }}>
-                <h2 className="fw-bold mb-4">Your Shopping Cart</h2>
+                <h2 className="section-title">Your Shopping Cart</h2>
 
                 {cart.items.length === 0 ? (
-                    <div className="text-center py-5">
+                    <div className="text-center py-5 border rounded bg-white shadow-soft">
                         <h4 className="text-muted">Your cart is empty</h4>
-                        <Button variant="primary" className="mt-3" onClick={() => navigate('/products')}>
+                        <Button className="btn-primary mt-3" onClick={() => navigate('/products')}>
                             Go Shopping
                         </Button>
                     </div>
                 ) : (
                     <Row>
                         <Col lg={8}>
-                            <Card className="shadow-sm border-0 mb-4">
+                            <Card className="border-0 shadow-soft mb-4">
                                 <Card.Body className="p-0">
                                     <Table hover responsive className="mb-0">
                                         <thead className="bg-light">
@@ -120,7 +120,7 @@ const Cart = () => {
                         </Col>
 
                         <Col lg={4}>
-                            <Card className="shadow-sm border-0">
+                            <Card className="border-0 shadow-soft">
                                 <Card.Body className="p-4">
                                     <h5 className="fw-bold mb-4">Order Summary</h5>
                                     <div className="d-flex justify-content-between mb-2">
@@ -134,10 +134,10 @@ const Cart = () => {
                                     <hr />
                                     <div className="d-flex justify-content-between mb-4">
                                         <h5 className="fw-bold">Total</h5>
-                                        <h5 className="fw-bold text-primary">₹{calculateTotal()}</h5>
+                                        <h5 className="fw-bold" style={{ color: 'var(--primary)' }}>₹{calculateTotal()}</h5>
                                     </div>
                                     <div className="d-grid">
-                                        <Button variant="primary" size="lg" onClick={() => alert('Proceeding to checkout (Coming Soon!)')}>
+                                        <Button className="btn-primary btn-lg" onClick={() => alert('Proceeding to checkout (Coming Soon!)')}>
                                             Checkout Now
                                         </Button>
                                     </div>
