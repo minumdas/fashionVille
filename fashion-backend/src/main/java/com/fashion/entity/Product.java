@@ -7,22 +7,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "products")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    private String name;
 
-    @Column(nullable = false)
-    private String password;
+    private Double price;
 
-    private String email;
+    private String imageUrl;
+
+    private String category; // e.g., "WOMEN", "MEN"
+
+    private String description;
 }

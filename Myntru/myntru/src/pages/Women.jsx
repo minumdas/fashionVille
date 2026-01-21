@@ -1,16 +1,17 @@
 import couponImg from "../coupon.png";
 import Container from 'react-bootstrap/Container';
-import Caroussel from '../component/Caroussel';
+import WomenCaroussel from '../component/WomenCaroussel';
 import Button from 'react-bootstrap/Button';
 import Footer from './Footer';
 import AppNavbar from './Navbar';
 import ShopForWomen from '../component/ShopForWomen';
+import ProductList from '../component/ProductList';
 
 const Women = () => {
   return (
     <>
-         {/* NAVBAR */}
-      <AppNavbar/>
+      {/* NAVBAR */}
+      <AppNavbar />
 
       {/* MAIN CONTENT */}
       <Container className="my-5">
@@ -33,21 +34,23 @@ const Women = () => {
         </div>
 
         {/* CAROUSEL SECTION */}
-        <div className="card shadow-sm border-0 rounded-4 p-3">
+        <div className="card shadow-sm border-0 rounded-4 p-3 mb-5">
           <h3 className="fw-bold mb-4 text-center">Featured Products</h3>
-          <Caroussel />
+          <WomenCaroussel />
         </div>
-      
-       {/* Card Group */}
-       <div className="card shadow-sm border-0 rounded-4 p-3">
-          <h3 className="fw-bold mb-4 text-center">Grace in Every Style</h3>
-         <ShopForWomen />
 
-       </div>
+        {/* Category Group */}
+        <div className="card shadow-sm border-0 rounded-4 p-3 mb-5">
+          <h3 className="fw-bold mb-4 text-center">Grace in Every Style</h3>
+          <ShopForWomen />
+        </div>
+
+        {/* Product List Section */}
+        <ProductList category="WOMEN" />
 
       </Container>
 
-     <Footer/>
+      <Footer />
     </>
   )
 }

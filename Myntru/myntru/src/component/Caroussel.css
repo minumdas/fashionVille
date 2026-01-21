@@ -14,3 +14,8 @@
   padding: 12px 32px;
   font-size: 18px;
 }
+
+.carousel-image {
+  height: 500px;
+  object-fit: cover;
+}

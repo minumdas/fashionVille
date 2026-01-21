@@ -1,42 +1,57 @@
-import sh1 from '../images/kidswear.jpg';
-import sh2 from '../images/kidswear1.jpg';
-import sh3 from '../images/dress.jpg';
-import sh4 from '../images/Teenwear.jpg';
-import sh5 from '../images/pantshirt.jpg';
-
-// Image array
-const images = [sh1, sh2, sh3, sh4, sh5];
-
-// Name array 
-const names = [
-  "Kids Wear",
-  "Baby Collection",
-  "Girls Dress",
-  "Teen Fashion",
-  "Pant & Shirt"
-];
+import React, { useState, useEffect } from 'react';
+import { getAllProducts } from '../utils/api';
 
 const Homecard = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        setLoading(true);
+        const data = await getAllProducts();
+        // Show only first 8 products for "New Arrivals"
+        setProducts(data.slice(0, 8));
+        setLoading(false);
+      } catch (err) {
+        console.error('[Homecard] Error:', err);
+        setError('Failed to load arrivals');
+        setLoading(false);
+      }
+    };
+    loadProducts();
+  }, []);
+
+  if (loading) return <div className="text-center p-4">Loading arrivals...</div>;
+  if (error) return <div className="alert alert-light text-center">{error}</div>;
+
   return (
     <div className="row g-4">
-      {images.map((imgSrc, index) => (
-        <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={index}>
+      {products.map((product) => (
+        <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={product.id}>
           <div className="card h-100 shadow-sm border-0 rounded-4">
             <img
-              src={imgSrc}
+              src={product.imageUrl || "https://via.placeholder.com/300x200?text=Product"}
               className="card-img-top rounded-top-4"
-              alt={names[index]}
-              style={{ height: '200px', objectFit: 'cover' }}
+              alt={product.name}
+              style={{ height: '250px', objectFit: 'cover' }}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "https://via.placeholder.com/300x200?text=Product";
+              }}
             />
 
             <div className="card-body text-center">
               <h5 className="card-title fw-bold">
-                {names[index]}
+                {product.name}
               </h5>
 
               <p className="card-text text-muted">
-                Trendy & comfortable styles
+                {product.description || 'Trendy & comfortable styles'}
               </p>
+
+              <p className="fw-bold text-danger">₹{product.price}</p>
 
               <button className="btn btn-danger fw-bold">
                 Shop Now

@@ -5,9 +5,11 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import logoVille from "../WearVille.jpg";
+import { useCart } from "../context/CartContext";
 import "./Navbar.css";
 
 const AppNavbar = () => {
+  const { cartCount } = useCart();
   const menus = [
     {
       title: "Men",
@@ -73,7 +75,7 @@ const AppNavbar = () => {
                 </div>
               </div>
             ))}
-
+            <Nav.Link as={Link} to="/products" className="nav-menu-link">All Products</Nav.Link>
           </Nav>
 
           {/* RIGHT ICONS */}
@@ -86,8 +88,16 @@ const AppNavbar = () => {
               <FavoriteBorderIcon />
               <div className="small">Wishlist</div>
             </Nav.Link>
-            <Nav.Link as={Link} to="/cart" className="icon-link">
+            <Nav.Link as={Link} to="/cart" className="icon-link position-relative">
               <ShoppingBagOutlinedIcon />
+              {cartCount > 0 && (
+                <span
+                  className="position-absolute badge rounded-pill bg-danger"
+                  style={{ top: '0', right: '10px', fontSize: '0.65rem' }}
+                >
+                  {cartCount}
+                </span>
+              )}
               <div className="small">Cart</div>
             </Nav.Link>
           </Nav>

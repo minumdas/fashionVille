@@ -1,37 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import men_sunglass from '../images/men_sunglass.webp';
-import men_wallet from '../images/men_wallet.jpg';
-import men_shoe from '../images/men_shoe.jpg';
-import men_leatherbelt from '../images/men_leatherbelt.jpg';
-import men_watch from '../images/men_watch.jpg';
-import shirt from '../images/shirt1.jpg';
-import tshirt from '../images/tshirt.jpg';
-import kurta from '../images/kurta.jpg';
-import printedshirt from '../images/printed_shirt.jpg';
+import { fetchCategoriesByType } from '../utils/api';
 
-const categories = [
-   { title: 'Shirt', img: shirt, desc: 'Stylish coord sets' },  
-   { title: 'T-shirt', img: tshirt, desc: 'Stylish coord sets' },  
-   { title: 'Kurta', img: kurta, desc: 'Stylish coord sets' },  
-  { title: 'Printed Shirt', img: printedshirt, desc: 'Stylish coord sets' },  
-  { title: 'Sunglasses', img: men_sunglass, desc: 'Trendy kids wear' },
-  { title: 'Wallet', img: men_wallet, desc: 'Modern western styles' },
-  { title: 'Shoe', img: men_shoe, desc: 'Ethnic kurtis' },
-  { title: 'Leather belt', img: men_leatherbelt, desc: 'Perfect combos' },
-  { title: 'Watch', img: men_watch, desc: 'Stylish coord sets' },
-];
-
-// chunk cards per slide
-const chunkSize = 4;
-const slides = [];
-for (let i = 0; i < categories.length; i += chunkSize) {
-  slides.push(categories.slice(i, i + chunkSize));
-}
 const Shopformen = () => {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchCategoriesByType('MEN');
+        setCategories(data);
+        setLoading(false);
+      } catch (err) {
+        console.error('[Shopformen] Error:', err);
+        setError('Failed to load categories');
+        setLoading(false);
+      }
+    };
+    loadCategories();
+  }, []);
+
+  if (loading) return <div className="text-center p-4">Loading...</div>;
+  if (categories.length === 0) return null;
+
+  // chunk cards per slide
+  const chunkSize = 4;
+  const slides = [];
+  for (let i = 0; i < categories.length; i += chunkSize) {
+    slides.push(categories.slice(i, i + chunkSize));
+  }
+
   return (
-     <div className="container my-4">
-     
+    <div className="container my-4">
       <Carousel
         indicators={false}
         controls={true}
@@ -42,16 +45,20 @@ const Shopformen = () => {
           <Carousel.Item key={idx}>
             <div className="category-grid">
               {group.map((cat, index) => (
-                <div className="category-cell" key={index}>
+                <div className="category-cell" key={cat.id || index}>
                   <div className="card category-card">
                     <img
-                      src={cat.img}
+                      src={cat.imageUrl || "https://via.placeholder.com/300x400?text=Category"}
                       className="card-img-top"
                       alt={cat.title}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://via.placeholder.com/300x400?text=Category";
+                      }}
                     />
                     <div className="card-body text-center">
                       <h5 className="card-title">{cat.title}</h5>
-                      <p className="card-text">{cat.desc}</p>
+                      <p className="card-text">{cat.description}</p>
                     </div>
                   </div>
                 </div>
@@ -61,7 +68,7 @@ const Shopformen = () => {
         ))}
       </Carousel>
     </div>
-  )
-}
+  );
+};
 
-export default Shopformen
+export default Shopformen;
