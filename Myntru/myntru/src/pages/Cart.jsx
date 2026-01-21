@@ -6,7 +6,7 @@ import AppNavbar from './Navbar';
 import Footer from './Footer';
 
 const Cart = () => {
-    const { cart, loading, clearCart } = useCart();
+    const { cart, loading, clearCart, updateQuantity, removeFromCart } = useCart();
     const navigate = useNavigate();
 
     const calculateTotal = () => {
@@ -50,7 +50,8 @@ const Cart = () => {
                                                 <th className="border-0 p-3">Product</th>
                                                 <th className="border-0 p-3 text-center">Price</th>
                                                 <th className="border-0 p-3 text-center">Quantity</th>
-                                                <th className="border-0 p-3 text-end">Total</th>
+                                                <th className="border-0 p-3 text-center">Total</th>
+                                                <th className="border-0 p-3 text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -71,8 +72,37 @@ const Cart = () => {
                                                         </div>
                                                     </td>
                                                     <td className="p-3 align-middle text-center">₹{item.product.price}</td>
-                                                    <td className="p-3 align-middle text-center">{item.quantity}</td>
-                                                    <td className="p-3 align-middle text-end fw-bold">₹{item.product.price * item.quantity}</td>
+                                                    <td className="p-3 align-middle text-center">
+                                                        <div className="d-flex align-items-center justify-content-center">
+                                                            <Button
+                                                                variant="outline-secondary"
+                                                                size="sm"
+                                                                className="px-2 py-0"
+                                                                onClick={() => updateQuantity(item.product.id, -1)}
+                                                            >
+                                                                -
+                                                            </Button>
+                                                            <span className="mx-3 fw-bold">{item.quantity}</span>
+                                                            <Button
+                                                                variant="outline-secondary"
+                                                                size="sm"
+                                                                className="px-2 py-0"
+                                                                onClick={() => updateQuantity(item.product.id, 1)}
+                                                            >
+                                                                +
+                                                            </Button>
+                                                        </div>
+                                                    </td>
+                                                    <td className="p-3 align-middle text-center fw-bold">₹{item.product.price * item.quantity}</td>
+                                                    <td className="p-3 align-middle text-center">
+                                                        <Button
+                                                            variant="link"
+                                                            className="text-danger p-0 border-0"
+                                                            onClick={() => removeFromCart(item.product.id)}
+                                                        >
+                                                            Remove
+                                                        </Button>
+                                                    </td>
                                                 </tr>
                                             ))}
                                         </tbody>

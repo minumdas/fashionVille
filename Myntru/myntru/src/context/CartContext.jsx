@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getCart, addToCart as apiAddToCart, clearCart as apiClearCart } from '../utils/api';
+import { getCart, addToCart as apiAddToCart, clearCart as apiClearCart, removeItemFromCart } from '../utils/api';
 
 const CartContext = createContext();
 
@@ -46,10 +46,26 @@ export const CartProvider = ({ children }) => {
         return success;
     };
 
+    const removeFromCart = async (productId) => {
+        const success = await removeItemFromCart(username, productId);
+        if (success) {
+            await fetchCart();
+        }
+        return success;
+    };
+
+    const updateQuantity = async (productId, delta) => {
+        const result = await apiAddToCart(username, productId, delta);
+        if (result.success) {
+            await fetchCart();
+        }
+        return result;
+    };
+
     const cartCount = cart.items.reduce((total, item) => total + item.quantity, 0);
 
     return (
-        <CartContext.Provider value={{ cart, loading, addToCart, clearCart, fetchCart, cartCount }}>
+        <CartContext.Provider value={{ cart, loading, addToCart, clearCart, fetchCart, cartCount, removeFromCart, updateQuantity }}>
             {children}
         </CartContext.Provider>
     );

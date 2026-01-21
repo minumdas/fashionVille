@@ -132,6 +132,19 @@ export const addToCart = async (username, productId, quantity = 1) => {
     }
 };
 
+export const removeItemFromCart = async (username, productId) => {
+    try {
+        console.log(`[API] Removing product ${productId} for user: ${username}`);
+        const response = await fetch(`${CART_API_URL}/remove?username=${username}&productId=${productId}`, {
+            method: 'POST'
+        });
+        return response.ok;
+    } catch (error) {
+        console.error('Error removing item from cart:', error);
+        return false;
+    }
+};
+
 export const clearCart = async (username) => {
     try {
         console.log(`[API] Clearing cart for user: ${username}`);

@@ -79,8 +79,14 @@ public class CartController {
 
         if (existingItem.isPresent()) {
             CartItem item = existingItem.get();
-            item.setQuantity(item.getQuantity() + quantity);
-        } else {
+            int newQuantity = item.getQuantity() + quantity;
+            if (newQuantity <= 0) {
+                cart.getItems().remove(item);
+                cartItemRepository.delete(item);
+            } else {
+                item.setQuantity(newQuantity);
+            }
+        } else if (quantity > 0) {
             CartItem newItem = new CartItem();
             newItem.setCart(cart);
             newItem.setProduct(product);
@@ -89,7 +95,32 @@ public class CartController {
         }
 
         cartRepository.save(cart);
-        return ResponseEntity.ok("Product added to cart successfully");
+        return ResponseEntity.ok("Cart updated successfully");
+    }
+
+    @PostMapping("/remove")
+    public ResponseEntity<?> removeFromCart(@RequestParam String username, @RequestParam Long productId) {
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user == null)
+            return ResponseEntity.badRequest().body("User not found");
+
+        Cart cart = cartRepository.findByUser(user).orElse(null);
+        if (cart == null)
+            return ResponseEntity.ok("Cart already empty");
+
+        Optional<CartItem> itemToRemove = cart.getItems().stream()
+                .filter(item -> item.getProduct().getId().equals(productId))
+                .findFirst();
+
+        if (itemToRemove.isPresent()) {
+            CartItem item = itemToRemove.get();
+            cart.getItems().remove(item);
+            cartItemRepository.delete(item);
+            cartRepository.save(cart);
+            return ResponseEntity.ok("Item removed from cart");
+        }
+
+        return ResponseEntity.ok("Item not found in cart");
     }
 
     @DeleteMapping("/clear/{username}")
